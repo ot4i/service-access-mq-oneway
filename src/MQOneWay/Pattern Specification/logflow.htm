@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us" xml:lang="en-us">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2010, 2012
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2010"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2010"/>
+<meta name="abstract" content="Use the Service Access from WebSphere MQ: one-way pattern to accept requests from many client applications on a single queue, and to return responses to the correct client by using transactional flows and persistent WebSphere MQ messages."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="css/bip4.css"/>
+<title>Log subflow for the Service Access from WebSphere MQ: one-way pattern</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script>
+</head>
+<body id="com.ibm.etools.mft.pattern.sen2.doc.logflow">
+<div class="section">
+	<h1 class="topictitle1">Log subflow for the 
+	<span>Service Access from WebSphere MQ: one-way</span> pattern</h1>
+	<p class="shortdesc">
+	Logging messages to a database does not 
+	take place within the message flows that handle business transactions; instead,  
+	persistent messages are written to a WebSphere MQ queue, 
+	which is processed separately. Writing 
+	persistent messages to a WebSphere MQ queue 
+	isolates any performance impact of database updates, therefore allowing control of where 
+	and when these queues are processed.
+	</p>
+	<p>
+	The pattern assumes that log data is added to the MQRFH2 header, if one 
+	exists. If no MQRFH2 header exists, one is created. The message body is 
+	logged as it arrives in the message flow. The following log data is added:
+	</p>
+	<ul>
+		<li>
+			Timestamp of log
+		</li>
+		<li>
+			Broker name
+		</li>
+		<li>
+			Message flow name
+		</li>
+		<li>
+			Status (0 success)
+		</li>
+		<li>
+			Mode - Request / Response
+		</li>
+	</ul>
+</div>
+<p>
+<a href="overview.htm#anchor1" title="Back">Back to the Service Access from WebSphere MQ: one-way pattern specification</a>
+</p>
+</body>
+</html>
+

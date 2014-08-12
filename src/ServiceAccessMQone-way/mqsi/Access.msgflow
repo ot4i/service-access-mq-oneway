@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmFlowOrder.msgnode="ComIbmFlowOrder.msgnode" xmlns:ComIbmMQInput.msgnode="ComIbmMQInput.msgnode" xmlns:ComIbmSOAPRequest.msgnode="ComIbmSOAPRequest.msgnode" xmlns:ComIbmThrow.msgnode="ComIbmThrow.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:mqsi_Error.subflow="mqsi/Error.subflow" xmlns:mqsi_Log.subflow="mqsi/Log.subflow" xmlns:mqsi_RequestProcessor.subflow="mqsi/RequestProcessor.subflow"
+    xmlns:patternAnnotation="http://www.ibm.com/patternAnnotation/2010" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="mqsi/Access.msgflow"
+    nsPrefix="mqsi_Access.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="Access" bundleName="mqsi/Access" pluginId="ServiceAccessMQone-way"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/ServiceAccessMQone-way/icons/full/obj16/Access.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/ServiceAccessMQone-way/icons/full/obj30/Access.gif"/>
+    <shortDescription xmi:type="utility:ConstantString" string=""/>
+    <longDescription xmi:type="utility:ConstantString" string="Copyright (c) 2014 IBM Corporation and other Contributors&#xD;&#xA;&#xD;&#xA;All rights reserved. This program and the accompanying materials&#xD;&#xA;are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA;which accompanies this distribution, and is available at&#xD;&#xA;http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA; &#xD;&#xA;Contributors:&#xD;&#xA;     IBM - initial implementation"/>
+    <version xmi:type="utility:ConstantString" string="1"/>
+    <composition>
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="Node1" location="32,160" messageDomainProperty="XMLNSC" convert="true" convertCodedCharSetId="1208">
+        <translation xmi:type="utility:ConstantString" string="Input Message"/>
+      </nodes>
+      <nodes xmi:type="ComIbmFlowOrder.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="151,160">
+        <translation xmi:type="utility:ConstantString" string="FlowOrder"/>
+      </nodes>
+      <nodes xmi:type="ComIbmSOAPRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="370,159" selectedBinding="AddressBookMessageSetSOAP_JMS_Binding" selectedOperation="SaveAddress" selectedPort="JMSSOAPPort" useHTTPTransport="true" sslProtocol="SSL" messageSetProperty="AddressBookMessageSet" validateTiming="immediate" parserXmlnscBuildTreeUsingXMLSchema="false">
+        <translation xmi:type="utility:ConstantString" string="SOAP Request"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_13" location="496,167" computeExpression="esql://routine/mqsi#MQAccess_1way_Add_Fault_data.Main">
+        <translation xmi:type="utility:ConstantString" string="Add Fault data"/>
+      </nodes>
+      <nodes xmi:type="ComIbmThrow.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_14" location="653,168" messageNumber="2372" messageText="SOAP Fault returned">
+        <translation xmi:type="utility:ConstantString" string="Throw"/>
+      </nodes>
+      <nodes xmi:type="mqsi_Error.subflow:FCMComposite_1" xmi:id="FCMComposite_1_4" location="110,50">
+        <translation xmi:type="utility:ConstantString" string="Error"/>
+      </nodes>
+      <nodes xmi:type="mqsi_Log.subflow:FCMComposite_1" xmi:id="FCMComposite_1_5" location="290,50">
+        <translation xmi:type="utility:ConstantString" string="Log"/>
+      </nodes>
+      <nodes xmi:type="mqsi_RequestProcessor.subflow:FCMComposite_1" xmi:id="FCMComposite_1_7" location="250,170">
+        <translation xmi:type="utility:ConstantString" string="RequestProcessor"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_9" targetNode="FCMComposite_1_2" sourceNode="Node1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_13" targetNode="FCMComposite_1_14" sourceNode="FCMComposite_1_13" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_13" sourceNode="FCMComposite_1_6" sourceTerminalName="OutTerminal.fault" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_4" sourceNode="Node1" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_4" sourceNode="Node1" sourceTerminalName="OutTerminal.catch" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_8" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.second" targetTerminalName="InTerminal.Response%20Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_10" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_6" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Request%20Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_11" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.first" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_12" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.Output" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+    <patternAnnotations>
+      <AnnotationTarget targetObjects="FCMComposite_1_6">
+        <PatternAnnotation xmi:type="patternAnnotation:PropertyPatternAnnotation" aliasId="FCMComposite_1_6.wsdlFileName" targetObject="FCMComposite_1_6" targetPropertyId="wsdlFileName"/>
+        <PatternAnnotation xmi:type="patternAnnotation:PropertyPatternAnnotation" aliasId="FCMComposite_1_6.requestTimeout" targetObject="FCMComposite_1_6" targetPropertyId="requestTimeout"/>
+        <PatternAnnotation xmi:type="patternAnnotation:PropertyPatternAnnotation" aliasId="FCMComposite_1_6.webServiceURL" targetObject="FCMComposite_1_6" targetPropertyId="webServiceURL"/>
+      </AnnotationTarget>
+      <AnnotationTarget targetObjects="Node1">
+        <PatternAnnotation xmi:type="patternAnnotation:PropertyPatternAnnotation" aliasId="Node1.queueName" targetObject="Node1" targetPropertyId="queueName"/>
+        <PatternAnnotation xmi:type="patternAnnotation:PropertyPatternAnnotation" aliasId="Node1.validateMaster" targetObject="Node1" targetPropertyId="validateMaster"/>
+        <PatternAnnotation xmi:type="patternAnnotation:PropertyPatternAnnotation" aliasId="Node1.messageSetProperty" targetObject="Node1" targetPropertyId="messageSetProperty"/>
+      </AnnotationTarget>
+    </patternAnnotations>
+  </eClassifiers>
+</ecore:EPackage>

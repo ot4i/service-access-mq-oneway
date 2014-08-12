@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us" xml:lang="en-us">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2010
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2010"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2010"/>
+<meta name="abstract" content="Use the Service Access from WebSphere MQ: one-way pattern to accept requests from many client applications on a single queue, and to return responses to the correct client by using transactional flows and persistent WebSphere MQ messages."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="css/bip4.css"/>
+<title>Access flow for the Service Access from WebSphere MQ: one-way pattern</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script>
+</head>
+<body id="com.ibm.etools.mft.pattern.sen2.doc.accessflow">
+<div class="section">
+	<h1 class="topictitle1">Access flow for the <span>Service Access from WebSphere MQ: one-way</span> pattern</h1>
+	<p class="shortdesc">
+	Details about the Access flow, including logging and exceptions, for the 
+	<span>Service Access from WebSphere MQ: one-way</span> pattern.
+	</p>
+	<ol>
+		<li>
+			A WebSphere MQ XML message is received on an MQInput node. 
+			If validation is required by the pattern parameters, this action is performed immediately.
+		</li>
+		<li>
+			The message passes to the Request Processing subflow, which provides a place 
+			to customize a pattern instance. 
+			The message must have the content, including namespaces, that is 
+			required for the body of the target provider service. 
+			If the incoming message does not meet this requirement, 
+			it must be corrected in the Request Processor subflow.
+		</li>
+		<li>
+			The message is passed to a SOAPRequest node, which adds the SOAP envelope 
+			and calls the target service.
+		</li>
+		<li>
+			Any response from the service, which is not a fault, is passed to the Log subflow,
+			which writes a log message if required. 
+			At this point, the second branch from the FlowOrder node starts, and passes the
+			incoming message to the Log subflow, which also writes a log message if required.
+		</li>
+		<li>
+			If a fault is returned or a timeout is encountered, 
+			the fault information is passed to the Error subflow for processing.
+		</li>
+	</ol>
+</div>
+<a href="overview.htm#anchor1" title="Back">Back to the Service Access from WebSphere MQ: one-way pattern specification</a>
+</body>
+</html>

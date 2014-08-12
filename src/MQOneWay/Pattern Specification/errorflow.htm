@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us" xml:lang="en-us">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2010
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2010"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2010"/>
+<meta name="abstract" content="Use the Service Access from WebSphere MQ: one-way pattern to accept requests from many client applications on a single queue, and to return responses to the correct client by using transactional flows and persistent WebSphere MQ messages."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="css/bip4.css"/>
+<title>Error subflow for the Service Access from WebSphere MQ: one-way pattern</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script>
+</head>
+<body id="com.ibm.etools.mft.pattern.sen2.doc.errorflow">
+<div class="section">
+	<h1 class="topictitle1">Error subflow for the 
+	<span>Service Access from WebSphere MQ: one-way</span> pattern</h1>
+	<p class="shortdesc">This subflow tests whether an error notification message must be written. 
+	Error notification messages do not preserve error data, 
+	but are used to notify system management that an error has occurred 
+	and that action might be required. The requirement for an error notification message is
+	determined by the user-defined property: <span class="msobjprop">Error notification</span>.</p>
+<ol>
+<li>If you have configured the pattern parameters to include error notification 
+messages and the user-defined property  
+<span class="msobjprop">Error notification</span> is selected, 
+an error message is prepared and written to the 
+error queue. Details of the exception are written as an XML message. 
+These details include:
+	<ul>
+	<li>Broker name</li>
+	<li>Flow name</li>
+	<li>Time stamp</li>
+	<li>Summary of the exception data</li>
+	</ul>
+	<p>The summary of the exception data contains the message flow label, 
+	error number, text description, 
+	and a list of inserts giving further details.</p>
+</li>
+<li>This pattern is a one-way reliable pattern, and the
+incoming message data must therefore be persisted in the case of error. 
+	<ul>
+		<li>If the <span class="msobjprop">Error action</span> value is 
+		<span class="msobjpropval">Roll back</span>, 
+		an exception is produced and the message is backed out onto the input queue, 
+		which must be configured with a backout queue. 
+		In this case, all error events are written to the event log. 
+		You can use this action to detect the cause of the error.</li>
+		<li>If the <span class="msobjprop">Error action</span> value is 
+		<span class="msobjpropval">Error queue</span>, the incoming message is written
+		as a persistent message to an error queue for later corrective action. 
+		In this case, error events are not written to the event log.
+		You can detect the cause of the error from the information 
+		that is in the error notification message. 
+		</li>
+	</ul>
+</li>
+</ol>
+	
+	<a
+		href="overview.htm#anchor1" title="Back">Back to the Service Access from WebSphere MQ: one-way pattern specification</a>
+</div>
+</body>
+</html>

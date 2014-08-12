@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us" xml:lang="en-us">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2010
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="copyright" content="Copyright IBM Corporation 2010"/>
+	<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2010"/>
+	<meta name="abstract" content="Details about what you need to know, and what resources you must have before you can use the Service Access from WebSphere MQ: one-way pattern."/>
+	<!-- Licensed Materials Property of IBM -->
+	<!-- US Government Users Restricted Rights -->
+	<!-- Use, duplication or disclosure restricted by -->
+	<!-- GSA ADP Schedule Contract with IBM Corp. -->
+	<link rel="stylesheet" type="text/css" href="css/ibmdita.css"/>
+	<link rel="stylesheet" type="text/css" href="css/bip4.css"/>
+	<title>Constraints on the use of the Service Access from WebSphere MQ: one-way pattern</title>
+	<script language="JavaScript" src="../../../help/LiveHelp.js" type="text/javascript"></script>
+</head>
+<body id="com.ibm.etools.mft.pattern.sen2.ca.mqoneway.constraints">
+	<h1 class="topictitle1">Constraints on the use of the <span>Service Access from WebSphere MQ: one-way</span> pattern</h1>
+	<div>
+		<p class="shortdesc">
+		A number of constraints apply when you use this pattern.</p>
+	<p>
+	You can use the 
+	<span>Service Access from WebSphere MQ: one-way</span> pattern
+	only if you meet all of the following constraints:
+	</p>
+	<ul>
+		<li>
+			Requests are received as WebSphere MQ XML messages.
+		</li>
+		<li>
+			Requesting applications can generate an XML message that can be used
+			as the body of a request to the target service.
+		</li>
+		<li>
+			The target service requests and responses use CCSID 1208.
+		</li>
+		<li>
+			WSDLs must contain the definitions that define the properties 
+			for the SOAPRequest node in the
+			definitions of the top level WSDL. 
+			Therefore, some complex nested WSDLs cannot automatically
+			be processed by the pattern.
+			<p>If WSDLs that do not meet this constraint are used, 
+			the pattern does not configure the SOAPRequest node, 
+			but lists configuration of the SOAPRequest node as a task to complete 
+			after generation of the pattern instance.</p> 			
+		</li>
+		<li>
+			The pattern defines its own format for the logging and error messages; it is 
+			assumed that these messages are sufficient to meet the requirements in your own 
+			environment.
+		</li>
+	</ul>
+	<p>
+	Some of the preceding constraints, particularly the CCSID, can be overcome by the use of a
+	transformation. The Request Processor subflow is included as the place where 
+	any required transformation is added. </p>
+	</div>
+	<p>
+	<a href="overview.htm#anchorBack" title="Back">Back to the Service Access from WebSphere MQ: one-way pattern specification</a>
+	</p>
+</body>
+</html>

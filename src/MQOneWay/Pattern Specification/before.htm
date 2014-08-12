@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us" xml:lang="en-us">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2010
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="copyright" content="Copyright IBM Corporation 2010"/>
+	<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2010"/>
+	<meta name="abstract" content="Details about what you need to know, and what resources you must have before you can use the Service Access from WebSphere MQ: one-way pattern."/>
+	<!-- Licensed Materials Property of IBM -->
+	<!-- US Government Users Restricted Rights -->
+	<!-- Use, duplication or disclosure restricted by -->
+	<!-- GSA ADP Schedule Contract with IBM Corp. -->
+	<link rel="stylesheet" type="text/css" href="css/ibmdita.css" />
+	<link rel="stylesheet" type="text/css" href="css/bip4.css" />
+	<title>Tasks to complete before applying the Service Access from WebSphere MQ: one-way pattern</title>
+	<script language="JavaScript" src="../../../help/LiveHelp.js" type="text/javascript"></script>
+</head>
+<body id="com.ibm.etools.mft.pattern.sen2.ca.mqoneway.before">
+	<h1 class="topictitle1">Tasks to complete before applying the <span>Service Access from WebSphere MQ: one-way</span> pattern</h1>
+	<div class="p">
+		<p class="shortdesc"></p>
+			<ul>
+		<li>
+			Check that this pattern meets your business requirements and can be supported 
+			by both the requester and provider applications.
+		</li>
+		<li>
+			Select a unique name for the pattern instance. You can use the pattern multiple 
+			times and create multiple different instances, which can be distinguished by 
+			their names. Identify the purpose of the pattern instance so that you can decide 
+			on an appropriate or meaningful name.
+		</li>
+		<li>
+			Define or identify the target service interface, and create deployable WSDL in a message set
+			project.
+		</li>
+		<li>Decide if validation of the incoming request messages is required.
+		If your requester applications generate correct messages, validation might
+		not be required.
+		If you want to validate your messages, you must already have a message set
+		to provide the message definitions,
+		or you must create a message set to provide the message definitions.</li>
+		<li>
+			Identify the queues and queue managers. 
+			You can use existing queue managers and queues, 
+			for example, to access the provider application, and decide upon their names. 
+			Identify any additional queue managers and queues that you require for this 
+			pattern, and decide upon their names. Take into account any policies, 
+			standards, or naming conventions that must apply.
+		</li>
+		<li>
+			Decide whether you require logging of request messages. If logging is 
+			required, you must decide to which queue manager and queue the logging 
+			messages are sent. You can send logging messages to a general log queue that is used by 
+			multiple message flows, or you can use a queue specifically for the pattern 
+			instance.
+		</li>
+		<li>
+			Decide if you want to handle errors by rolling back the input message or by writing
+			the message to an error queue. If messages are rolled back, all error events
+			are recorded in the event log.
+		</li>
+	</ul>
+	</div>
+	<p>
+		<a href="overview.htm#anchorBack" title="Back">Back to the Service Access from WebSphere MQ: one-way pattern specification</a>
+	</p>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us" xml:lang="en-us">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2010
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="copyright" content="Copyright IBM Corporation 2010"/>
+	<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2010"/>
+	<meta name="abstract" content="Tasks to complete after generating the Service Access from WebSphere MQ: one-way pattern."/>
+	<meta name="description" content=""/>
+	<!-- Licensed Materials Property of IBM -->
+	<!-- US Government Users Restricted Rights -->
+	<!-- Use, duplication or disclosure restricted by -->
+	<!-- GSA ADP Schedule Contract with IBM Corp. -->
+	<link rel="stylesheet" type="text/css" href="css/ibmdita.css"/>
+	<link rel="stylesheet" type="text/css" href="css/bip4.css"/>
+	<title>Tasks to complete after generating the Service Access from WebSphere MQ: one-way pattern</title>
+	<script language="JavaScript" src="../../../help/LiveHelp.js" type="text/javascript"></script>
+</head>
+<body id="com.ibm.etools.mft.pattern.sen2.ca.mqoneway.after">
+	<h1 class="topictitle1">Tasks to complete after generating the 
+	<span>Service Access from WebSphere MQ: one-way</span> pattern</h1>
+	<p class="shortdesc">Tasks that you must complete after you have generated the pattern.</p>
+
+		<ol>
+		<li>
+			Review the configuration of the SOAPRequest node. 
+			In the case of complex WSDLs, 
+			you might have to
+			select the WSDL from within the Message Flow editor. 
+			This requirement is shown in the summary file.
+		</li>
+		<li>
+			Create the broker archive (BAR) file. 
+			Add the generated message flow to your BAR file. 
+			In the Broker Archive editor, you must select the <span class="uicontrol">Compile and in-line resources</span> 
+			option before you build the BAR file. 
+			You must also add any message sets that are referenced by the flow.
+		</li>
+		<li>
+			Configure the broker archive file. 
+			Further configuration of the message flow in the broker archive 
+			file is not required before you deploy the message flows for your
+			<span>Service Access from WebSphere MQ: one-way</span>
+			pattern instance, but you might want to review some of the default options and 
+			configure changes for your environment. 
+			For example, you might want to review the following properties:
+			<ul>
+				<li><span class="msobjprop">Request logging required</span> and
+				<span class="msobjprop">Response logging required</span>. 
+					Use these properties to switch logging on and off.
+					When you turn logging on, you must check that the logging queue is
+					correctly defined for your environment.
+				</li>
+				<li><span class="msobjprop">ErrorLoggingOn</span>. 
+					If error messages are included, 
+					at deployment time this switch determines whether 
+					logging of errors is required for the current environment.
+				</li>
+			</ul>
+			You can change any of the pattern parameters that are listed in the 
+			parameter tables as configurable, but you must be
+			careful because the pattern might be assuming specific behavior. 
+			However, you can 
+			change properties that are determined by operational 
+			characteristics and do not affect flow logic, for example, 
+			security configuration or additional instances.
+		</li>
+		<li>
+			Create queues and queue managers. 
+			When you apply the pattern, a list of WebSphere MQ queues is 
+			generated with queue names and queue manager names. 
+			These WebSphere MQ queues and queue managers must be created if 
+			they do not already exist. 
+			For each queue manager that is created, the connection to the broker queue manager
+			must also be created. All of the message settings that are required by the 
+			pattern are set explicitly on the messages and are not dependent on queue 
+			settings.
+			<ul>
+				<li>In the summary file, view the list of queues that you must create. 
+				The summary file 
+ 				is located in the Pattern Configuration folder of the 
+ 				<i>InstanceName</i> pattern instance project.</li>
+				<li>Create WebSphere MQ
+					resources. You can create WebSphere MQ
+					resources either on the command line by using programs and 
+					utilities such as <span class="cmdname">runmqsc</span>, or by using the
+					WebSphere MQ Explorer graphical interface. For more information about creating
+					WebSphere MQ resources, see <cite>WebSphere MQ Intercommunication</cite>, 
+					available on the
+					 <img src="images/external_link.gif" alt="This link opens in a new window" class="external_link" /> 
+					<a href="http://www.ibm.com/software/integration/wmq/library/" target="_blank">WebSphere MQ library</a> web site.
+				</li>
+			</ul>
+		</li>
+		<li>Deploy the BAR file. The message set containing the deployable WSDL must be 
+			deployed by using the same or another BAR file, to every broker where the flows 
+			are deployed.
+		</li>
+	</ol>
+		<a href="overview.htm#anchorBack" title="Back">Back to the Service Access from WebSphere MQ: one-way pattern specification</a>
+
+</body>
+</html>
